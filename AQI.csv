@@ -1,0 +1,210 @@
+﻿iso_code,continent,location,AQI
+ABW,North America,Aruba,9
+BMU,North America,Bermuda,13
+ , ,Bonaire Sint Eustatius and Saba,
+VGB,North America,British Virgin Islands,24
+CYM,North America,Cayman Islands,14
+CUW,North America,Curacao,34
+ , ,Faeroe Islands,
+ , ,Falkland Islands,
+ , ,French Polynesia,18
+ , ,Gibraltar,28
+ , ,Greenland,50
+GUM,Oceania,Guam,9
+GGY,Europe,Guernsey,27
+IMN,Europe,Isle of Man,75
+JEY,Europe,Jersey,58
+OWID_KOS,Europe,Kosovo,95
+LIE,Europe,Liechtenstein,
+MKD,Europe,Macedonia,25
+MCO,Europe,Monaco,28
+MSR,North America,Montserrat,
+ , ,New Caledonia,13
+PSE,Asia,Palestine,17
+PRI,North America,Puerto Rico,5
+SMR,Europe,San Marino,78
+SXM,North America,Sint Maarten (Dutch part),61
+SYR,Asia,Syria,
+TWN,Asia,Taiwan,74
+TCA,North America,Turks and Caicos Islands,
+VIR,North America,United States Virgin Islands,4
+ , ,Vatican,
+ , ,Western Sahara,
+ , ,World,
+ZMB,Africa,Zambia,23
+ , ,Vietnam,95
+BGD,Asia,Bangladesh,194
+ , ,Timor,38
+ , ,Cambodia,11
+IND,Asia,India,171
+ , ,Nepal,161
+JPN,Asia,Japan,46
+ETH,Africa,Ethiopia,70
+KOR,Asia,South Korea,57
+ , ,Eritrea,
+LKA,Asia,Sri Lanka,95
+ , ,Laos,137
+ , ,Madagascar,30
+ , ,Uganda,160
+BDI,Africa,Burundi,
+AFG,Asia,Afghanistan,193
+NER,Africa,Niger,82
+BFA,Africa,Burkina Faso,93
+MWI,Africa,Malawi,
+MMR,Asia,Myanmar,137
+ , ,Rwanda,94
+ , ,Chad,77
+SGP,Asia,Singapore,16
+CHN,Asia,China,183
+ , ,Bhutan,
+PHL,Asia,Philippines,52
+COD,Africa,Democratic Republic of Congo,
+IDN,Asia,Indonesia,34
+KEN,Africa,Kenya,51
+ , ,Mozambique,
+ , ,Central African Republic,135
+GIN,Africa,Guinea,61
+ , ,Comoros,
+GNQ,Africa,Equatorial Guinea,
+AGO,Africa,Angola,67
+SOM,Africa,Somalia,
+TZA,Africa,Tanzania,
+TGO,Africa,Togo,150
+ , ,Maldives,
+MLI,Africa,Mali,82
+PAK,Asia,Pakistan,231
+ , ,South Sudan,
+SDN,Africa,Sudan,242
+SLE,Africa,Sierra Leone,
+SEN,Africa,Senegal,80
+NGA,Africa,Nigeria,175
+ , ,Guinea-Bissau,
+BEN,Africa,Benin,56
+COG,Africa,Congo,76
+LBR,Africa,Liberia,40
+THA,Asia,Thailand,157
+CIV,Africa,Cote d'Ivoire,78
+GMB,Africa,Gambia,54
+MUS,Africa,Mauritius,
+GHA,Africa,Ghana,58
+CMR,Africa,Cameroon,111
+CPV,Africa,Cape Verde,43
+ , ,Sao Tome and Principe,
+MRT,Africa,Mauritania,
+DJI,Africa,Djibouti,
+ , ,Seychelles,
+BRN,Asia,Brunei,12
+ , ,Tajikistan,181
+GAB,Africa,Gabon,120
+ZWE,Africa,Zimbabwe,
+MYS,Asia,Malaysia,47
+CHE,Europe,Switzerland,19
+SWZ,Africa,Swaziland,
+KGZ,Asia,Kyrgyzstan,104
+ , ,Lesotho,
+UZB,Asia,Uzbekistan,230
+ , ,Yemen,
+ , ,Namibia,
+BIH,Europe,Bosnia and Herzegovina,95
+TTO,North America,Trinidad and Tobago,6
+MDA,Europe,Moldova,70
+ATG,North America,Antigua and Barbuda,59
+BWA,Africa,Botswana,
+PER,South America,Peru,52
+ , ,Saint Lucia,
+DNK,Europe,Denmark,26
+ECU,South America,Ecuador,79
+AZE,Asia,Azerbaijan,114
+ITA,Europe,Italy,50
+AUS,Oceania,Australia,52
+GUY,South America,Guyana,
+ARM,Asia,Armenia,182
+BOL,South America,Bolivia,6
+SVN,Europe,Slovenia,72
+PRY,South America,Paraguay,
+NLD,Europe,Netherlands,69
+SVK,Europe,Slovakia,72
+SWE,Europe,Sweden,35
+ , ,Mongolia,
+PRT,Europe,Portugal,19
+KAZ,Asia,Kazakhstan,164
+EST,Europe,Estonia,23
+GTM,North America,Guatemala,69
+ , ,Papua New Guinea,
+ , ,Grenada,48
+HND,North America,Honduras,17
+SRB,Europe,Serbia,102
+FRA,Europe,France,69
+GEO,Asia,Georgia,172
+ALB,Europe,Albania,43
+CYP,Europe,Cyprus,63
+ISL,Europe,Iceland,21
+BEL,Europe,Belgium,25
+BRA,South America,Brazil,33
+FIN,Europe,Finland,24
+COL,South America,Colombia,70
+DEU,Europe,Germany,59
+ROU,Europe,Romania,67
+LUX,Europe,Luxembourg,60
+HTI,North America,Haiti,
+PAN,North America,Panama,19
+ , ,Saint Kitts and Nevis,
+NOR,Europe,Norway,64
+POL,Europe,Poland,63
+RUS,Europe,Russia,85
+BRB,North America,Barbados,
+MNE,Europe,Montenegro,56
+LVA,Europe,Latvia,34
+NIC,North America,Nicaragua,
+ , ,Saint Vincent and the Grenadines,
+ESP,Europe,Spain,59
+UKR,Europe,Ukraine,55
+BLZ,North America,Belize,37
+HRV,Europe,Croatia,16
+BLR,Europe,Belarus,73
+SLV,North America,El Salvador,168
+CUB,North America,Cuba,21
+JAM,North America,Jamaica,51
+GRC,Europe,Greece,46
+BGR,Europe,Bulgaria,51
+IRL,Europe,Ireland,60
+VEN,South America,Venezuela,7
+AND,Europe,Andorra,28
+CRI,North America,Costa Rica,5
+IRN,Asia,Iran,162
+CZE,Europe,Czech Republic,95
+MAR,Africa,Morocco,34
+ISR,Asia,Israel,82
+LTU,Europe,Lithuania,34
+SUR,South America,Suriname,
+HUN,Europe,Hungary,74
+TUN,Africa,Tunisia,
+OMN,Asia,Oman,
+DZA,Africa,Algeria,38
+DOM,North America,Dominican Republic,13
+GBR,Europe,United Kingdom,70
+ , ,Dominica,
+URY,South America,Uruguay,
+CHL,South America,Chile,61
+ARG,South America,Argentina,13
+ZAF,Africa,South Africa,83
+MLT,Europe,Malta,33
+MEX,North America,Mexico,22
+AUT,Europe,Austria,76
+CAN,North America,Canada,57
+BHR,Asia,Bahrain,
+ , ,Fiji,
+IRQ,Asia,Iraq,112
+NZL,Oceania,New Zealand,40
+BHS,North America,Bahamas,50
+ARE,Asia,United Arab Emirates,151
+EGY,Africa,Egypt,67
+LBN,Asia,Lebanon,
+TUR,Asia,Turkey,102
+LBY,Africa,Libya,
+QAT,Asia,Qatar,104
+SAU,Asia,Saudi Arabia,122
+JOR,Asia,Jordan,24
+USA,North America,United States,59
+KWT,Asia,Kuwait,81
+MNP,Oceania,Northern Mariana Islands,
