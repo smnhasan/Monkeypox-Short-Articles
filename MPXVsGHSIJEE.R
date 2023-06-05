@@ -1,3 +1,4 @@
+
 library(ggplot2)
 library(ggrepel)
 
@@ -7,10 +8,163 @@ options(scipen = 999)
 #selection of Top-20 countries
 #Data Management
 
-setwd('E:\\MPX Short Articles')
+setwd('E:\\ResearchProject\\Aminul\\Monkeypox Short Articles\\Monkeypox Short Articles')
 MPX <- read.csv("MPX.csv")
 
-MPX <- subset(MPX, MPX$date == "2023-03-15") #5/29/2021
+MPX <- subset(MPX, MPX$date == "2023-05-15") #5/29/2021
+
+#Remove World and International information
+MPX<-MPX[!(MPX$iso_code=="OWID_WRL"),]
+
+NROW(MPX)
+#Creating CFR
+MPX$CFR <- (MPX$total_deaths/MPX$total_cases)*100
+
+options(scipen = 999)
+
+GHSI <- read.csv("GHSI.csv")
+GHSI[GHSI == 0] <- NA
+
+WGI <- read.csv("WGI.csv")
+WGI[WGI == 0] <- NA
+
+JEE <- read.csv("JEE_All3.csv")
+JEE$RS[JEE$RS == 0] <- NA
+
+Obesity <- read.csv("Obesity.csv")
+
+
+
+
+#Merge all data with GHSI and WGI
+
+finaldt1 <- merge(GHSI, WGI,  by="location")
+
+finaldt2 <- merge(finaldt1, Obesity,  by="location")
+
+finaldt3 <- merge(finaldt2, JEE,  by="location")
+
+MPX2 <- merge(MPX, finaldt3,  by="location")
+
+MPX2 <- MPX2[c(MPX2$total_cases > 0),]
+NROW(MPX2)
+
+write.csv(MPX2, "MPX2.csv")
+
+cor (MPX2$total_cases , MPX2$GHSI, method = c("pearson"), use = "complete.obs")
+cor.test(MPX2$total_cases , MPX2$GHSI, method = c("pearson"), use = "complete.obs")
+
+# lm <- glm(GHSI ~ total_cases, data=MPX2)
+# 
+# summary(lm)
+# confint(lm)
+# 
+# with(summary(lm), 1 - deviance/null.deviance)
+
+
+a <- ggplot(MPX2, aes(x = total_cases, y = GHSI))  + 
+  theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
+  geom_point(size = 3.5,
+             show.legend = F,colour="dark green") +
+  geom_text_repel(show.legend = F, 
+                  size = 3.5, 
+                  label=MPX2$location, 
+                  hjust = 0.2,
+                  vjust= 0.5) +
+  xlab("Total Cases of 86 Countries (Worldwide)") + ylab("GHSI")  +
+  geom_smooth(method = "lm", se = FALSE,colour="dark green")
+a
+
+#Without USA
+
+# cor (MPX2$total_cases , MPX2$RS, method = c("pearson"), use = "complete.obs")
+# cor.test(MPX2$total_cases , MPX2$RS, method = c("pearson"), use = "complete.obs")
+
+# lm <- glm(RS ~ total_cases, data=MPX2)
+# 
+# summary(lm)
+# confint(lm)
+# 
+# with(summary(lm), 1 - deviance/null.deviance)
+
+# b <- ggplot(MPX2, aes(x = total_cases, y = RS))  + 
+#   theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
+#   geom_point(size = 3.5,
+#              show.legend = F,colour="dark green") +
+#   geom_text_repel(show.legend = F, 
+#                   size = 3.5, 
+#                   label=MPX2$location, 
+#                   hjust = 0.2,
+#                   vjust= 0.5) +
+#   xlab("Total Cases of 88 Countries (Worldwide)") + ylab("JEE")  +
+#   geom_smooth(method = "lm", se = FALSE,colour="dark green") 
+# b
+
+
+MPX2 <- MPX2[c(MPX2$total_deaths > 0),]
+NROW(MPX2)
+
+cor (MPX2$total_deaths , MPX2$GHSI, method = c("pearson"), use = "complete.obs")
+cor.test(MPX2$total_deaths , MPX2$GHSI, method = c("pearson"), use = "complete.obs")
+
+# lm <- glm(GHSI ~ total_deaths, data=MPX2)
+# 
+# summary(lm)
+# confint(lm)
+# 
+# with(summary(lm), 1 - deviance/null.deviance)
+
+c <- ggplot(MPX2, aes(x = total_deaths, y = GHSI))  + 
+  theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
+  geom_point(size = 3.5,
+             show.legend = F,colour="red") +
+  geom_text_repel(show.legend = F, 
+                  size = 3.5, 
+                  label=MPX2$location, 
+                  hjust = 0.2,
+                  vjust= 0.5) +
+  xlab("Total Deaths of 18 Countries (Worldwide)") + ylab("GHSI")  +
+  geom_smooth(method = "lm", se = FALSE,colour="red") 
+c
+
+# cor (MPX2$total_deaths , MPX2$RS, method = c("pearson"), use = "complete.obs")
+# cor.test(MPX2$total_deaths , MPX2$RS, method = c("pearson"), use = "complete.obs")
+# 
+# lm <- glm(RS ~ total_deaths, data=MPX2)
+# 
+# summary(lm)
+# confint(lm)
+# 
+# with(summary(lm), 1 - deviance/null.deviance)
+# 
+# d <- ggplot(MPX2, aes(x = total_deaths, y = RS))  + 
+#   theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
+#   geom_point(size = 3.5,
+#              show.legend = F,colour="red") +
+#   geom_text_repel(show.legend = F, 
+#                   size = 3.5, 
+#                   label=MPX2$location, 
+#                   hjust = 0.2,
+#                   vjust= 0.5) +
+#   xlab("Total Deaths of 17 Countries (Worldwide)") + ylab("JEE")  +
+#   geom_smooth(method = "lm", se = FALSE,colour="red") 
+# d
+
+
+
+library(ggplot2)
+library(ggrepel)
+
+options(scipen = 999)
+
+
+#selection of Top-20 countries
+#Data Management
+
+setwd('E:\\ResearchProject\\Aminul\\Monkeypox Short Articles\\Monkeypox Short Articles')
+MPX <- read.csv("MPX.csv")
+
+MPX <- subset(MPX, MPX$date == "2023-05-15") #5/29/2021
 
 #Remove World and International information
 MPX<-MPX[!(MPX$iso_code=="OWID_WRL"),]
@@ -42,19 +196,24 @@ finaldt3 <- merge(finaldt2, JEE,  by="location")
 
 MPX2 <- merge(MPX, finaldt3,  by="location")
 
+
+MPX2 <- MPX2[MPX2$location != "United States",]
+
 MPX2 <- MPX2[c(MPX2$total_cases > 0),]
 NROW(MPX2)
+
 cor (MPX2$total_cases , MPX2$GHSI, method = c("pearson"), use = "complete.obs")
 cor.test(MPX2$total_cases , MPX2$GHSI, method = c("pearson"), use = "complete.obs")
 
-lm <- glm(GHSI ~ total_cases, data=MPX2)
+# lm <- glm(GHSI ~ total_cases, data=MPX2)
+# 
+# summary(lm)
+# confint(lm)
+# 
+# with(summary(lm), 1 - deviance/null.deviance)
 
-summary(lm)
-confint(lm)
 
-with(summary(lm), 1 - deviance/null.deviance)
-
-a <- ggplot(MPX2, aes(x = total_cases, y = GHSI))  + 
+b <- ggplot(MPX2, aes(x = total_cases, y = GHSI))  + 
   theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
   geom_point(size = 3.5,
              show.legend = F,colour="dark green") +
@@ -63,49 +222,50 @@ a <- ggplot(MPX2, aes(x = total_cases, y = GHSI))  +
                   label=MPX2$location, 
                   hjust = 0.2,
                   vjust= 0.5) +
-  xlab("Total Cases of 88 Countries (Worldwide)") + ylab("GHSI")  +
-  geom_smooth(method = "lm", se = FALSE,colour="dark green") 
-a
-
-#JEE
-
-cor (MPX2$total_cases , MPX2$RS, method = c("pearson"), use = "complete.obs")
-cor.test(MPX2$total_cases , MPX2$RS, method = c("pearson"), use = "complete.obs")
-
-lm <- glm(RS ~ total_cases, data=MPX2)
-
-summary(lm)
-confint(lm)
-
-with(summary(lm), 1 - deviance/null.deviance)
-
-  b <- ggplot(MPX2, aes(x = total_cases, y = RS))  + 
-  theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
-  geom_point(size = 3.5,
-             show.legend = F,colour="dark green") +
-  geom_text_repel(show.legend = F, 
-                  size = 3.5, 
-                  label=MPX2$location, 
-                  hjust = 0.2,
-                  vjust= 0.5) +
-  xlab("Total Cases of 88 Countries (Worldwide)") + ylab("JEE")  +
-  geom_smooth(method = "lm", se = FALSE,colour="dark green") 
+  xlab("Total Cases of 85 Countries (Except United States)") + ylab("GHSI")  +
+  geom_smooth(method = "lm", se = FALSE,colour="dark green")
 b
+
+#Without USA
+
+# cor (MPX2$total_cases , MPX2$RS, method = c("pearson"), use = "complete.obs")
+# cor.test(MPX2$total_cases , MPX2$RS, method = c("pearson"), use = "complete.obs")
+
+# lm <- glm(RS ~ total_cases, data=MPX2)
+# 
+# summary(lm)
+# confint(lm)
+# 
+# with(summary(lm), 1 - deviance/null.deviance)
+
+# b <- ggplot(MPX2, aes(x = total_cases, y = RS))  + 
+#   theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
+#   geom_point(size = 3.5,
+#              show.legend = F,colour="dark green") +
+#   geom_text_repel(show.legend = F, 
+#                   size = 3.5, 
+#                   label=MPX2$location, 
+#                   hjust = 0.2,
+#                   vjust= 0.5) +
+#   xlab("Total Cases of 88 Countries (Worldwide)") + ylab("JEE")  +
+#   geom_smooth(method = "lm", se = FALSE,colour="dark green") 
+# b
 
 
 MPX2 <- MPX2[c(MPX2$total_deaths > 0),]
 NROW(MPX2)
+
 cor (MPX2$total_deaths , MPX2$GHSI, method = c("pearson"), use = "complete.obs")
 cor.test(MPX2$total_deaths , MPX2$GHSI, method = c("pearson"), use = "complete.obs")
 
-lm <- glm(GHSI ~ total_deaths, data=MPX2)
+# lm <- glm(GHSI ~ total_deaths, data=MPX2)
+# 
+# summary(lm)
+# confint(lm)
+# 
+# with(summary(lm), 1 - deviance/null.deviance)
 
-summary(lm)
-confint(lm)
-
-with(summary(lm), 1 - deviance/null.deviance)
-
-c <- ggplot(MPX2, aes(x = total_deaths, y = GHSI))  + 
+d <- ggplot(MPX2, aes(x = total_deaths, y = GHSI))  + 
   theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
   geom_point(size = 3.5,
              show.legend = F,colour="red") +
@@ -114,35 +274,38 @@ c <- ggplot(MPX2, aes(x = total_deaths, y = GHSI))  +
                   label=MPX2$location, 
                   hjust = 0.2,
                   vjust= 0.5) +
-  xlab("Total Deaths of 17 Countries (Worldwide)") + ylab("GHSI")  +
-  geom_smooth(method = "lm", se = FALSE,colour="red") 
-c
-
-cor (MPX2$total_deaths , MPX2$RS, method = c("pearson"), use = "complete.obs")
-cor.test(MPX2$total_deaths , MPX2$RS, method = c("pearson"), use = "complete.obs")
-
-lm <- glm(RS ~ total_deaths, data=MPX2)
-
-summary(lm)
-confint(lm)
-
-with(summary(lm), 1 - deviance/null.deviance)
-
-d <- ggplot(MPX2, aes(x = total_deaths, y = RS))  + 
-  theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
-  geom_point(size = 3.5,
-             show.legend = F,colour="red") +
-  geom_text_repel(show.legend = F, 
-                  size = 3.5, 
-                  label=MPX2$location, 
-                  hjust = 0.2,
-                  vjust= 0.5) +
-  xlab("Total Deaths of 17 Countries (Worldwide)") + ylab("JEE")  +
+  xlab("Total Deaths of 17 Countries (Except United States)") + ylab("GHSI")  +
   geom_smooth(method = "lm", se = FALSE,colour="red") 
 d
 
+# cor (MPX2$total_deaths , MPX2$RS, method = c("pearson"), use = "complete.obs")
+# cor.test(MPX2$total_deaths , MPX2$RS, method = c("pearson"), use = "complete.obs")
+# 
+# lm <- glm(RS ~ total_deaths, data=MPX2)
+# 
+# summary(lm)
+# confint(lm)
+# 
+# with(summary(lm), 1 - deviance/null.deviance)
+# 
+# d <- ggplot(MPX2, aes(x = total_deaths, y = RS))  + 
+#   theme(plot.title = element_text(hjust = 0.5,size=12,face = "bold"),text = element_text(size = 12))+
+#   geom_point(size = 3.5,
+#              show.legend = F,colour="red") +
+#   geom_text_repel(show.legend = F, 
+#                   size = 3.5, 
+#                   label=MPX2$location, 
+#                   hjust = 0.2,
+#                   vjust= 0.5) +
+#   xlab("Total Deaths of 17 Countries (Worldwide)") + ylab("JEE")  +
+#   geom_smooth(method = "lm", se = FALSE,colour="red") 
+# d
+
+
+
+
 
 tiff("GHSIJEE.tiff", units="in", width=12, height=12, res=300)
-gridExtra::grid.arrange(a,b,c,d, ncol = 2, nrow=2)
+gridExtra::grid.arrange(a,c,b,d, ncol = 2, nrow=2)
 dev.off()
 
